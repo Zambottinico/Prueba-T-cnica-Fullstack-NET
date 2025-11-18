@@ -30,7 +30,7 @@
                 <th>Documento</th>
                 <th>Email</th>
                 <th>Rol</th>
-                @if (UserContext.IsAuthenticated)
+                @if (UserContext.CurrentRole == "Administrador")
                 {
                     <th class="text-center" style="width: 140px;">Acciones</th>
                 }
@@ -46,7 +46,7 @@
                     <td>@u.Documento</td>
                     <td>@u.Email</td>
                     <td>@u.Rol</td>
-                    @if (UserContext.IsAuthenticated)
+                    @if (UserContext.CurrentRole == "Administrador")
                     {
                         <td class="text-center">
                             <a class="btn btn-sm btn-warning me-1"
