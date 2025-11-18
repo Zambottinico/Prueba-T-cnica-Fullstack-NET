@@ -2,5 +2,8 @@
 {
     public interface IUserContext
     {
+        string CurrentRole { get; }
+        string? Email { get; }
+        bool IsAuthenticated { get; }
     }
 }

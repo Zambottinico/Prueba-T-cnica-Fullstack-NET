@@ -7,24 +7,28 @@ namespace Prueba_Técnica___Fullstack_NET.Controllers
     public class UsersController : Controller
     {
         private readonly IUsersService _usersService;
+        private readonly IUserContext _userContext;
 
-        // Simulación de rol fijo
-        private const string CurrentRole = "Administrador"; // o "Usuario"
 
-        public UsersController(IUsersService usersService)
+        public UsersController(IUsersService usersService, IUserContext userContext)
         {
             _usersService = usersService;
+            _userContext = userContext;
         }
 
         [HttpPost]
         public IActionResult Delete(int id)
         {
+            if (_userContext.CurrentRole != "Administrador")
+                return Forbid();
             _usersService.Delete(id);
             return RedirectToAction("Index");
         }
         [HttpPost]
         public IActionResult Create(User user)
         {
+            if (_userContext.CurrentRole != "Administrador")
+                return Forbid();
             if (!ModelState.IsValid)
                 return View(user);
 
@@ -42,6 +46,8 @@ namespace Prueba_Técnica___Fullstack_NET.Controllers
         [HttpPost]
         public IActionResult Edit(User user)
         {
+            if (_userContext.CurrentRole != "Administrador")
+                return Forbid();
             if (!ModelState.IsValid)
                 return View(user);
 
@@ -52,7 +58,7 @@ namespace Prueba_Técnica___Fullstack_NET.Controllers
 
         public IActionResult Index()
         {
-            var users = _usersService.GetUsers(CurrentRole);
+            var users = _usersService.GetUsers(_userContext.CurrentRole);
             return View(users);
         }
         public IActionResult Create()

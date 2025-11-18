@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@inject IUserContext UserContext
+@using Microsoft.AspNetCore.Http
+@using Prueba_Técnica___Fullstack_NET.Services
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -39,6 +42,19 @@
                             </a>
                         </li>
                     </ul>
+                    @if (UserContext.IsAuthenticated)
+                    {
+                        <span class="me-3">Rol: <strong>@UserContext.CurrentRole</strong></span>
+                        <span class="me-3">(@UserContext.Email)</span>
+
+                        <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                            <button type="submit" class="btn btn-outline-secondary btn-sm">Cerrar sesión</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <a class="btn btn-outline-primary btn-sm" asp-controller="Account" asp-action="Login">Iniciar sesión</a>
+                    }
                 </div>
 
             </div>
