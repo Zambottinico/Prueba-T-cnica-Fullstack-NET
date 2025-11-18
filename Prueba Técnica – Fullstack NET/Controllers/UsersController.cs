@@ -31,6 +31,24 @@ namespace Prueba_Técnica___Fullstack_NET.Controllers
             _usersService.Create(user);
             return RedirectToAction("Index");
         }
+        public IActionResult Edit(int id)
+        {
+            var user = _usersService.GetById(id);
+            if (user == null)
+                return NotFound();
+
+            return View(user);
+        }
+        [HttpPost]
+        public IActionResult Edit(User user)
+        {
+            if (!ModelState.IsValid)
+                return View(user);
+
+            _usersService.Update(user);
+            return RedirectToAction("Index");
+        }
+
 
         public IActionResult Index()
         {
