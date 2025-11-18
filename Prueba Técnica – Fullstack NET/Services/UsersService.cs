@@ -44,6 +44,9 @@ namespace Prueba_Técnica___Fullstack_NET.Services
 
         public void Update(User user)
         {
+            // Validar: un usuario no puede Editarse a sí mismo
+            if (string.Equals(user.Email, _userContext.Email, StringComparison.OrdinalIgnoreCase))
+                throw new InvalidOperationException("No puedes eliminar tu propio usuario.");
             // Validar que no exista un usuario con el mismo email
             var existing = _repo.GetByEmail(user.Email);
             if (existing != null)
