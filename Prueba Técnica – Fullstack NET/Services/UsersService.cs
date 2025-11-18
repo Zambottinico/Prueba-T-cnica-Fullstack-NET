@@ -25,6 +25,9 @@ namespace Prueba_Técnica___Fullstack_NET.Services
         }
 
         public User? GetById(int id) => _repo.GetById(id);
+        public User? FindByEmailAndRole(string email, string role)
+            => _repo.GetByEmailAndRole(email, role);
+
         public int Create(User user) => _repo.Create(user);
         public void Update(User user) => _repo.Update(user);
         public void Delete(int id) => _repo.Delete(id);

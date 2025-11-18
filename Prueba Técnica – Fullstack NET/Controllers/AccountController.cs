@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Prueba_Técnica___Fullstack_NET.Models;
+using Prueba_Técnica___Fullstack_NET.Services;
 
 namespace Prueba_Técnica___Fullstack_NET.Controllers
 {
@@ -7,6 +8,12 @@ namespace Prueba_Técnica___Fullstack_NET.Controllers
     {
         private const string RoleKey = "Role";
         private const string EmailKey = "Email";
+        private readonly IUsersService _usersService;
+
+        public AccountController(IUsersService usersService)
+        {
+            _usersService = usersService;
+        }
 
         [HttpGet]
         public IActionResult Login()
@@ -21,9 +28,15 @@ namespace Prueba_Técnica___Fullstack_NET.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            // Simulado: no valida contra BD.
-            HttpContext.Session.SetString(RoleKey, model.Rol);
-            HttpContext.Session.SetString(EmailKey, model.Email ?? string.Empty);
+            var user = _usersService.FindByEmailAndRole(model.Email, model.Rol);
+            if (user == null)
+            {
+                ModelState.AddModelError(string.Empty, "Credenciales inválidas: email o rol incorrecto.");
+                return View(model);
+            }
+
+            HttpContext.Session.SetString(RoleKey, user.Rol);
+            HttpContext.Session.SetString(EmailKey, user.Email);
 
             return RedirectToAction("Index", "Users");
         }
