@@ -15,6 +15,13 @@ namespace Prueba_Técnica___Fullstack_NET.Controllers
             _usersService = usersService;
         }
 
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            _usersService.Delete(id);
+            return RedirectToAction("Index");
+        }
+
         public IActionResult Index()
         {
             var users = _usersService.GetUsers(CurrentRole);

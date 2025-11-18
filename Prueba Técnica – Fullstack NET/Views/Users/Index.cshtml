@@ -60,5 +60,54 @@
 </div>
 
 
-<div id="deleteModalContainer"></div>
+<!-- Modal de Confirmación de Eliminación -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title">Eliminar Usuario</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                <p>
+                    ¿Seguro que deseas eliminar al usuario
+                    <strong id="deleteUserName"></strong>?
+                </p>
+
+                <form id="deleteForm" method="post">
+                    <input type="hidden" id="deleteUserId" name="id" />
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" form="deleteForm" class="btn btn-danger">Eliminar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const deleteModal = document.getElementById('deleteModal');
+
+        deleteModal.addEventListener('show.bs.modal', function (event) {
+            const button = event.relatedTarget;
+
+            const userId = button.getAttribute('data-user-id');
+            const userName = button.getAttribute('data-user-name');
+
+            // completar el modal
+            document.getElementById('deleteUserName').textContent = userName;
+            document.getElementById('deleteUserId').value = userId;
+
+            // asignar acción al form
+            document.getElementById('deleteForm').action = `/Users/Delete/${userId}`;
+        });
+    </script>
+}
+
 
