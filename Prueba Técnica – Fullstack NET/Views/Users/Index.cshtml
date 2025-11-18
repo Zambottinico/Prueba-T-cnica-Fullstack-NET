@@ -41,7 +41,7 @@
                            asp-controller="Users"
                            asp-action="Edit"
                            asp-route-id="@u.Id">
-                            Editar
+                            <i class="bi bi-pencil-fill"></i>
                         </a>
 
                         <button class="btn btn-sm btn-danger"
@@ -49,7 +49,7 @@
                                 data-bs-target="#deleteModal"
                                 data-user-id="@u.Id"
                                 data-user-name="@($"{u.Nombre} {u.Apellido}")">
-                            Eliminar
+                            <i class="bi bi-trash-fill"></i>
                         </button>
                     </td>
                 </tr>
