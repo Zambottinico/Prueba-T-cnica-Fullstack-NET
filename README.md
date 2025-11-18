@@ -24,7 +24,7 @@ dotnet run
 
 O desde Visual Studio: Run / F5
 
-##4️⃣ Login simulado (sin contraseñas)
+## 4️⃣ Login simulado (sin contraseñas)
 Este proyecto utiliza un login simple sin contraseñas.
 La autenticación se realiza verificando email + rol contra la tabla Usuarios.
 
@@ -36,7 +36,7 @@ Administrador
 user@test.com
 Usuario
 
-##5️⃣ Permisos del sistema
+## 5️⃣ Permisos del sistema
 
 El proyecto implementa control de acceso basado en roles:
 
