@@ -44,7 +44,11 @@
                     </ul>
                     @if (UserContext.IsAuthenticated)
                     {
-                        <span class="me-3">Rol: <strong>@UserContext.CurrentRole</strong></span>
+                        <span class="me-3">
+                            <i class="bi bi-person-badge-fill"></i>
+
+                            Rol: <strong>@UserContext.CurrentRole</strong>
+                            </span>
                         <span class="me-3">(@UserContext.Email)</span>
 
                         <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
@@ -69,8 +73,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2025 - Prueba_Técnica___Fullstack_NET -
-            <a asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2025 - Prueba Técnica Fullstack NET - <a asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
