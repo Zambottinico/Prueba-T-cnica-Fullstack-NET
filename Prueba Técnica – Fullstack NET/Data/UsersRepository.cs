@@ -26,6 +26,13 @@ namespace Prueba_Técnica___Fullstack_NET.Data
             using var conn = _connectionFactory.CreateConnection();
             return conn.QueryFirstOrDefault<User>("SELECT * FROM Usuarios WHERE Id = @Id", new { Id = id });
         }
+        public User? GetByEmail(string email)
+        {
+            using var conn = _connectionFactory.CreateConnection();
+            const string sql = "SELECT TOP 1 * FROM Usuarios WHERE Email = @Email";
+            return conn.QueryFirstOrDefault<User>(sql, new { Email = email });
+        }
+
         public User? GetByEmailAndRole(string email, string role)
         {
             using var conn = _connectionFactory.CreateConnection();

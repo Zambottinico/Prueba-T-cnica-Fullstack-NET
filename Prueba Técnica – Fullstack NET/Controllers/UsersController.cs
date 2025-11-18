@@ -25,16 +25,28 @@ namespace Prueba_Técnica___Fullstack_NET.Controllers
             return RedirectToAction("Index");
         }
         [HttpPost]
+        [HttpPost]
         public IActionResult Create(User user)
         {
             if (_userContext.CurrentRole != "Administrador")
-                return Forbid();
+                return RedirectToAction("AccessDenied", "Home");
+
             if (!ModelState.IsValid)
                 return View(user);
 
-            _usersService.Create(user);
+            try
+            {
+                _usersService.Create(user);
+            }
+            catch (InvalidOperationException ex)
+            {
+                ModelState.AddModelError(nameof(user.Email), ex.Message);
+                return View(user);
+            }
+
             return RedirectToAction("Index");
         }
+
         public IActionResult Edit(int id)
         {
             if (_userContext.CurrentRole != "Administrador")

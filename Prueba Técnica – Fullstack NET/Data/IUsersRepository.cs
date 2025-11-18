@@ -6,6 +6,8 @@ namespace Prueba_Técnica___Fullstack_NET.Data
     {
         IEnumerable<User> GetAll();
         User? GetById(int id);
+        User? GetByEmail(string email);
+
         User? GetByEmailAndRole(string email, string role);
 
         int Create(User user);
