@@ -38,7 +38,7 @@ namespace Prueba_Técnica___Fullstack_NET.Controllers
         public IActionResult Edit(int id)
         {
             if (_userContext.CurrentRole != "Administrador")
-                return Forbid();
+                return RedirectToAction("AccessDenied", "Home");
             var user = _usersService.GetById(id);
             if (user == null)
                 return NotFound();
@@ -66,7 +66,7 @@ namespace Prueba_Técnica___Fullstack_NET.Controllers
         public IActionResult Create()
         {
             if (_userContext.CurrentRole != "Administrador")
-                return Forbid();
+                return RedirectToAction("AccessDenied", "Home");
             return View();
         }
 
