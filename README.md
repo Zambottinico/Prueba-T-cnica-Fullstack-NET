@@ -43,11 +43,17 @@ El proyecto implementa control de acceso basado en roles:
 👑 Administrador
 
 Ver listado completo
+
 Crear usuario
+
 Editar usuario
+
 Eliminar usuario
 
 👤 Usuario estándar
+
 Solo ve usuarios de su mismo rol
+
 No puede crear/editar/eliminar
+
 Si intenta acceder a una ruta no permitida, es redirigido a: /Home/AccessDenied
