@@ -41,7 +41,16 @@ namespace Prueba_Técnica___Fullstack_NET.Services
             return _repo.Create(user);
         }
 
-        public void Update(User user) => _repo.Update(user);
+
+        public void Update(User user)
+        {
+            // Validar que no exista un usuario con el mismo email
+            var existing = _repo.GetByEmail(user.Email);
+            if (existing != null)
+                throw new InvalidOperationException("El email ya está registrado.");
+
+            _repo.Update(user);
+        }
         public void Delete(int id)
         {
             // Obtener usuario a eliminar

@@ -65,7 +65,17 @@ namespace Prueba_Técnica___Fullstack_NET.Controllers
             if (!ModelState.IsValid)
                 return View(user);
 
-            _usersService.Update(user);
+            try
+            {
+                _usersService.Update(user);
+            }
+            catch (InvalidOperationException ex)
+            {
+                ModelState.AddModelError(nameof(user.Email), ex.Message);
+                return View(user);
+            }
+
+            
             return RedirectToAction("Index");
         }
 
