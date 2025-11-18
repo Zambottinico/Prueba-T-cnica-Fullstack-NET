@@ -60,6 +60,8 @@ namespace Prueba_Técnica___Fullstack_NET.Controllers
 
         public IActionResult Index()
         {
+            if (!_userContext.IsAuthenticated)
+                return RedirectToAction("AccessDenied", "Home");
             var users = _usersService.GetUsers(_userContext.CurrentRole);
             return View(users);
         }
