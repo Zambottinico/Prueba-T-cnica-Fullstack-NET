@@ -55,14 +55,21 @@
                             asp-route-id="@u.Id">
                                 <i class="bi bi-pencil-fill"></i>
                             </a>
-
-                            <button class="btn btn-sm btn-danger"
-                            data-bs-toggle="modal"
-                            data-bs-target="#deleteModal"
-                            data-user-id="@u.Id"
-                            data-user-name="@($"{u.Nombre} {u.Apellido}")">
-                                <i class="bi bi-trash-fill"></i>
-                            </button>
+                            @if(UserContext.Email== u.Email)
+                            {
+                                <button class="btn btn-sm btn-danger" disabled>
+                                    <i class="bi bi-trash-fill"></i>
+                                </button>
+                            }
+                            else{
+                                <button class="btn btn-sm btn-danger"
+                                data-bs-toggle="modal"
+                                data-bs-target="#deleteModal"
+                                data-user-id="@u.Id"
+                                data-user-name="@($"{u.Nombre} {u.Apellido}")">
+                                    <i class="bi bi-trash-fill"></i>
+                                </button>
+                            }
                         </td>
                     }
                 </tr>

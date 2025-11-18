@@ -8,9 +8,12 @@ namespace Prueba_Técnica___Fullstack_NET.Services
     public class UsersService : IUsersService
     {
         private readonly IUsersRepository _repo;
-        public UsersService(IUsersRepository repo)
+        private readonly IUserContext _userContext;
+        public UsersService(IUsersRepository repo,IUserContext userContext)
         {
             _repo = repo;
+            _userContext = userContext;
+
         }
 
         public IEnumerable<User> GetUsers(string currentRole)
@@ -30,6 +33,18 @@ namespace Prueba_Técnica___Fullstack_NET.Services
 
         public int Create(User user) => _repo.Create(user);
         public void Update(User user) => _repo.Update(user);
-        public void Delete(int id) => _repo.Delete(id);
+        public void Delete(int id)
+        {
+            // Obtener usuario a eliminar
+            var user = _repo.GetById(id);
+            if (user == null)
+                throw new Exception("El usuario no existe.");
+
+            // Validar: un usuario no puede eliminarse a sí mismo
+            if (string.Equals(user.Email, _userContext.Email, StringComparison.OrdinalIgnoreCase))
+                throw new InvalidOperationException("No puedes eliminar tu propio usuario.");
+
+            _repo.Delete(id);
+        }
     }
 }
