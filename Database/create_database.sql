@@ -41,4 +41,33 @@ VALUES ('Admin', 'Sistema', '12345678', 'admin@test.com', 'Administrador');
 INSERT INTO Usuarios (Nombre, Apellido, Documento, Email, Rol)
 VALUES ('Juan', 'Pérez', '23456789', 'user@test.com', 'Usuario');
 
+
+/* Más usuarios Administrador */
+INSERT INTO Usuarios (Nombre, Apellido, Documento, Email, Rol)
+VALUES ('Lucía', 'Ramírez', '30111222', 'lucia.ramirez@test.com', 'Administrador');
+
+INSERT INTO Usuarios (Nombre, Apellido, Documento, Email, Rol)
+VALUES ('Marcos', 'Díaz', '28445566', 'marcos.diaz@test.com', 'Administrador');
+
+INSERT INTO Usuarios (Nombre, Apellido, Documento, Email, Rol)
+VALUES ('Sofía', 'Villalba', '27566789', 'sofia.villalba@test.com', 'Administrador');
+
+
+/* Usuarios comunes */
+INSERT INTO Usuarios (Nombre, Apellido, Documento, Email, Rol)
+VALUES ('Pedro', 'Gómez', '23322112', 'pedro.gomez@test.com', 'Usuario');
+
+INSERT INTO Usuarios (Nombre, Apellido, Documento, Email, Rol)
+VALUES ('Carla', 'López', '29988776', 'carla.lopez@test.com', 'Usuario');
+
+INSERT INTO Usuarios (Nombre, Apellido, Documento, Email, Rol)
+VALUES ('Mateo', 'Fernández', '31123456', 'mateo.fernandez@test.com', 'Usuario');
+
+INSERT INTO Usuarios (Nombre, Apellido, Documento, Email, Rol)
+VALUES ('Ana', 'Torres', '32112233', 'ana.torres@test.com', 'Usuario');
+
+INSERT INTO Usuarios (Nombre, Apellido, Documento, Email, Rol)
+VALUES ('Bruno', 'Martínez', '30199887', 'bruno.martinez@test.com', 'Usuario');
+
 GO
+
